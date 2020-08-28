@@ -24,6 +24,11 @@ jobs:
       run: yarn install
     - name: Unit Tests
       run: yarn run lerna run test -- -- --coverage
+  relese:
+    needs: build  
+    runs-on: ubuntu-latest
+    - name: Install
+      run: yarn install
     - name: Get Latest Release
       id: latest_version
       uses: abatilo/release-info-action@v1.2.0
@@ -31,7 +36,7 @@ jobs:
         owner: ${{ github.repository_owner }}
         repo: resolvejs
     - name: Bump the version Up
-      run: lerna version prepatch ${steps.latest_version.outputs.latest_tag} --no-push --no-git-tag-version --yes
+      run: lerna version prepatch ${{ steps.latest_version.outputs.latest_tag }} --no-push --no-git-tag-version --yes
     - name: Read Version from Leran
       id: version
       uses: notiz-dev/github-action-json-property@release
