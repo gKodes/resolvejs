@@ -1,0 +1,15 @@
+babel:
+  configs:
+    - babel.config
+  arg: --config-file
+  ext:
+    - json
+    - js
+
+jest:
+  configs:
+    - jest.config
+  arg: --config
+  ext:
+    - json
+    - js

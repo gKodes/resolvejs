@@ -1,0 +1,22 @@
+on: [push]
+name: Build and Test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 10.x]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        clean: true
+        fetch-depth: 0
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install
+      run: yarn install
+    - name: Unit Tests
+      run: yarn run lerna run test -- -- --coverage
