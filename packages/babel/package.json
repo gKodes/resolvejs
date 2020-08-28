@@ -1,6 +1,6 @@
 {
   "name": "@resolve/babel",
-  "version": "0.0.0",
+  "version": "0.0.3-alpha.0",
   "description": "> TODO: description",
   "author": "Kamalakar Gadireddy <Kamalakar.Gadireddy@marriott.com>",
   "homepage": "https://github.com/gKodes/resolvejs#readme",
@@ -35,8 +35,8 @@
     "url": "https://github.com/gKodes/resolvejs/issues"
   },
   "devDependencies": {
-    "@resolve/config-up": "./packages/config-up/",
     "@babel/cli": "^7.10.4",
+    "@resolve/config-up": "./packages/config-up/",
     "jest": "^26.1.0"
   },
   "peerDependencies": {

@@ -1,8 +1,9 @@
 on: 
-  push:
-    branches-ignore:
+  relese:
+    types: [published]
+    branches:
       - master
-name: Build | Test
+name: Build | Test | Publish
 
 jobs:
   build:
@@ -19,7 +20,18 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+        registry-url: https://registry.npmjs.org/
     - name: Install
       run: yarn install
     - name: Unit Tests
       run: yarn run lerna run test -- -- --coverage
+    - name: Lerna Publish
+      run: yarn run lerna publish --canary minor --no-push
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+    - uses: actions/setup-node@v1
+      with:
+        registry-url: 'https://npm.pkg.github.com'
+    - run: yarn publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
