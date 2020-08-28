@@ -1,0 +1,51 @@
+on: 
+  push:
+    branches:
+      - master
+name: Build | Test | Create Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 10.x]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        clean: true
+        fetch-depth: 0
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: https://registry.npmjs.org/
+    - name: Install
+      run: yarn install
+    - name: Unit Tests
+      run: yarn run lerna run test -- -- --coverage
+    - name: Get Latest Release
+      id: latest_version
+      uses: abatilo/release-info-action@v1.2.0
+      with:
+        owner: ${{ github.repository_owner }}
+        repo: resolvejs
+    - name: Bump the version Up
+      run: lerna version prepatch ${steps.latest_version.outputs.latest_tag} --no-push --no-git-tag-version --yes
+    - name: Read Version from Leran
+      id: version
+      uses: notiz-dev/github-action-json-property@release
+      with: 
+          path: 'lerna.json'
+          prop_path: 'version'
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{steps.version.outputs.prop}} 
+        release_name: Release ${{steps.version.outputs.prop}} 
+        body: "Auto Release Create Tag"
+        draft: true
+        prerelease: false

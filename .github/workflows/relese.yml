@@ -1,0 +1,37 @@
+on: 
+  relese:
+    types: [published]
+    branches:
+      - master
+name: Build | Test | Publish
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 10.x]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        clean: true
+        fetch-depth: 0
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: https://registry.npmjs.org/
+    - name: Install
+      run: yarn install
+    - name: Unit Tests
+      run: yarn run lerna run test -- -- --coverage
+    - name: Lerna Publish
+      run: yarn run lerna publish --canary minor --no-push
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+    - uses: actions/setup-node@v1
+      with:
+        registry-url: 'https://npm.pkg.github.com'
+    - run: yarn publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
