@@ -1,6 +1,6 @@
 {
-  "name": "@resolve/config-up",
-  "version": "0.0.3-alpha.0",
+  "name": "@resolvejs/config-up",
+  "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Kamalakar Gadireddy <Kamalakar.Gadireddy@marriott.com>",
   "homepage": "https://github.com/gKodes/resolvejs#readme",
@@ -18,6 +18,9 @@
     "lib",
     "bin"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gKodes/resolvejs.git"

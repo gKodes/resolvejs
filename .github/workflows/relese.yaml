@@ -1,37 +1,54 @@
 on: 
   release:
     types: [published]
-    branches:
-      - master
 name: Build | Test | Publish
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x, 10.x]
     steps:
     - uses: actions/checkout@v2
       with:
         clean: true
         fetch-depth: 0
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 12
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: https://registry.npmjs.org/
+        node-version: 12
+        registry-url: https://registry.npmjs.org/  
     - name: Install
       run: yarn install
     - name: Unit Tests
       run: yarn run lerna run test -- -- --coverage
-    - name: Lerna Publish
-      run: yarn run lerna publish --canary minor --no-push
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: Lerna Update Version
+      run: yarn run lerna version --no-push --no-git-tag-version --yes ${{ steps.get_version.outputs.VERSION }}
+    - name: Commit files # commit the output folder
+      run: |
+        git config --local user.email "bot@action.build"
+        git config --local user.name "GitHub Action Publis"
+        git commit -am "Release ${{ steps.get_version.outputs.VERSION }}"
+    # - name: Publish To NPM
+    #   uses: actions/setup-node@v1
+    #   with:
+    #     node-version: 12
+    #     registry-url: https://registry.npmjs.org/
+    # - run: yarn lerna publish from-package --no-push --no-git-tag-version --yes
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-    - uses: actions/setup-node@v1
+    - name: Publish To GitHub
+      uses: actions/setup-node@v1
       with:
+        node-version: 12
         registry-url: 'https://npm.pkg.github.com'
-    - run: yarn publish
+        scope: '@resolvejs'
+    - run: yarn lerna publish from-package --registry https://npm.pkg.github.com --no-push --no-git-tag-version --yes
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Push changes # push the output folder to your repo
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: false
