@@ -1,12 +1,12 @@
 on: 
-  relese:
+  release:
     types: [published]
     branches:
       - master
 name: Build | Test | Publish
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     strategy:
       matrix:

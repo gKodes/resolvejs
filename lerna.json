@@ -4,5 +4,14 @@
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "version": "0.0.3-alpha.0"
+  "version": "0.0.0",
+  "ignoreChanges": [
+    "**/.prettierignore",
+    "**/.gitignore",
+    "**/.github/**",
+    "**/.vscode/**",
+    "**/__fixtures__/**",
+    "**/__tests__/**",
+    "**/*.md"
+  ]
 }
