@@ -1,6 +1,6 @@
 {
   "name": "@resolvejs/babel",
-  "version": "0.0.4-alpha.0",
+  "version": "0.0.5-alpha.0",
   "description": "> TODO: description",
   "author": "Kamalakar Gadireddy <Kamalakar.Gadireddy@marriott.com>",
   "homepage": "https://github.com/gKodes/resolvejs#readme",
@@ -29,8 +29,8 @@
     "test": "jest --verbose --coverage --color"
   },
   "dependencies": {
-    "@resolvejs/core": "file:../core/",
     "@resolvejs/config-up": "file:../config-up/",
+    "@resolvejs/core": "file:../core/",
     "cosmiconfig": "^6.0.0",
     "debug": "^4.1.1",
     "yargs": "^15.4.0"
