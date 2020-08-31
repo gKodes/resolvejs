@@ -3,6 +3,8 @@ on:
     types: [published]
 name: Build | Test | Publish
 
+env:
+  NODE_EVN: 12
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -11,10 +13,10 @@ jobs:
       with:
         clean: true
         fetch-depth: 0
-    - name: Use Node.js 12
+    - name: Setup Node ${{ env.NODE_EVN }}
       uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: ${{ env.NODE_EVN }}
         registry-url: https://registry.npmjs.org/  
     - name: Install
       run: yarn install
@@ -24,18 +26,17 @@ jobs:
       id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
     - name: Lerna Update Version
-      run: yarn run lerna version --no-push --no-git-tag-version --yes ${{ steps.get_version.outputs.VERSION }}
-    - name: Commit files # commit the output folder
+      run: |
+        yarn lerna bootstrap
+        yarn run lerna version --no-push --no-git-tag-version --yes ${{ steps.get_version.outputs.VERSION }}
+    - name: Setup GitHub User
       run: |
         git config --local user.email "bot@action.build"
         git config --local user.name "GitHub Action Publis"
         git commit -am "Release ${{ steps.get_version.outputs.VERSION }}"
     - name: Publish To NPM
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-        registry-url: https://registry.npmjs.org/
-    - run: yarn lerna publish from-package --no-push --no-git-tag-version --yes
+      run: |
+        yarn lerna publish from-package --no-push --no-git-tag-version --yes
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
     # - name: Publish To GitHub
