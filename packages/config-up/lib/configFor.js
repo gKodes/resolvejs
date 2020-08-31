@@ -9,12 +9,17 @@ const asArray = require('./utils/asArray');
  */
 function configFor(options) {
   assert.ok(options.app || options.config, 'Either opp or config should be provided');
+  let lookUpOptions = { files: options.config, exts: options.ext };
   if (options.app) {
-    assert.ok(knownConfigs[options.app], `Unknown opp ${options.app}`);
+    const knowConfig = knownConfigs[options.app];
+    assert.ok(knowConfig, `Unknown opp ${options.app}`);
+
+    lookUpOptions.files = knowConfig.configs;
+    lookUpOptions.exts = knowConfig.ext;
   }
 
-  const config = asArray(options.config || knownConfigs[options.app].configs);
-  return lookUp({ files: config });
+  lookUpOptions.files = asArray(lookUpOptions.files);
+  return lookUp(lookUpOptions);
 }
 
 module.exports = configFor;

@@ -1,4 +1,4 @@
-const { resolveFilename } = require('../resolver');
+const { resolveFilename } = require('../resolveFilename');
 
 describe('resolveFilename', () => {
   it('', () => {
