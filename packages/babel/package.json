@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@resolvejs/core": "file:../core/",
+    "@resolvejs/config-up": "file:../config-up/",
     "cosmiconfig": "^6.0.0",
     "debug": "^4.1.1",
     "yargs": "^15.4.0"
@@ -39,12 +40,10 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
-    "@resolvejs/config-up": "file:../config-up/",
     "jest": "^26.1.0"
   },
   "peerDependencies": {
     "@babel/cli": "^7.10.4",
-    "@babel/register": "^7.10.4",
-    "@resolvejs/config-up": "file:../config-up/"
+    "@babel/register": "^7.10.4"
   }
 }
