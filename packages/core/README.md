@@ -1,4 +1,4 @@
-# `core`
+# @resolvejs/core
 
 > TODO: description
 

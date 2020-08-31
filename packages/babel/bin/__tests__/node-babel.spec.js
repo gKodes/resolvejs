@@ -1,4 +1,4 @@
-const configForSync = require('@resolve/config-up/lib/configFor');
+const configForSync = require('@resolvejs/config-up/lib/configFor');
 
 describe('babel/bin/node-babel', () => {
   let exitSpy;

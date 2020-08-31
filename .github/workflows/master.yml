@@ -6,6 +6,7 @@ name: Build | Test | Create Release
 
 jobs:
   build:
+    if: "! contains(toJSON(github.event.pusher.email), 'bot@action.build')"
     runs-on: ubuntu-latest
     strategy:
       matrix:

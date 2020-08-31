@@ -3,7 +3,7 @@
 let configForSync;
 
 try {
-  configForSync = require('@resolve/config-up/lib/configFor');
+  configForSync = require('@resolvejs/config-up/lib/configFor');
 } catch (errNoConfig) { console.info('unable to find config-up module in the lookup tree', module.paths) }
 
 const path = require('path');

@@ -1,4 +1,4 @@
-# `jest`
+# @resolvejs/jest
 
 > TODO: description
 

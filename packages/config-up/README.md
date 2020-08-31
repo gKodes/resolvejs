@@ -1,4 +1,4 @@
-# `config-up`
+# @resolvejs/config-up
 
 > TODO: description
 

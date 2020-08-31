@@ -1,1 +1,1 @@
-module.exports = jest.createMockFromModule('@resolve/core/register');
+module.exports = jest.createMockFromModule('@resolvejs/core/register');

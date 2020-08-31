@@ -3,12 +3,12 @@
 
 const path = require('path');
 const { cosmiconfigSync } = require('cosmiconfig');
-const { lookUpPkgSync, readPkgSync } = require('@resolve/core/lib');
-const { isES6Package } = require('@resolve/core/lib/isES6Package');
+const { lookUpPkgSync, readPkgSync } = require('@resolvejs/core/lib');
+const { isES6Package } = require('@resolvejs/core/lib/isES6Package');
 let configForSync;
 
 try {
-  configForSync = require('@resolve/config-up/lib/configFor');
+  configForSync = require('@resolvejs/config-up/lib/configFor');
 } catch (errNoConfig) { console.info('unable to find config-up module in the lookup tree', module.paths) }
 
 // Config up
@@ -64,7 +64,7 @@ require('@babel/register')({
   cache: false,
 });
 
-require('@resolve/core/register');
+require('@resolvejs/core/register');
 
 /*
 -r stuff

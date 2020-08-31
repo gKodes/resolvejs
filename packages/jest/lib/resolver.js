@@ -1,5 +1,5 @@
 const path = require('path');
-const { resolve } = require('@resolve/core');
+const { resolve } = require('@resolvejs/core');
 const debug = require('debug')('resolve-jest');
 
 const PERIOD_CHAR = '.';

@@ -30,23 +30,23 @@ jobs:
         git config --local user.email "bot@action.build"
         git config --local user.name "GitHub Action Publis"
         git commit -am "Release ${{ steps.get_version.outputs.VERSION }}"
-    # - name: Publish To NPM
-    #   uses: actions/setup-node@v1
-    #   with:
-    #     node-version: 12
-    #     registry-url: https://registry.npmjs.org/
-    # - run: yarn lerna publish from-package --no-push --no-git-tag-version --yes
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-    - name: Publish To GitHub
+    - name: Publish To NPM
       uses: actions/setup-node@v1
       with:
         node-version: 12
-        registry-url: 'https://npm.pkg.github.com'
-        scope: '@resolvejs'
-    - run: yarn lerna publish from-package --registry https://npm.pkg.github.com --no-push --no-git-tag-version --yes
+        registry-url: https://registry.npmjs.org/
+    - run: yarn lerna publish from-package --no-push --no-git-tag-version --yes
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+    # - name: Publish To GitHub
+    #   uses: actions/setup-node@v1
+    #   with:
+    #     node-version: 12
+    #     registry-url: 'https://npm.pkg.github.com'
+    #     scope: '@resolvejs'
+    # - run: yarn lerna publish from-package --registry https://npm.pkg.github.com --no-push --no-git-tag-version --yes
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Push changes # push the output folder to your repo
       uses: ad-m/github-push-action@master
       with:

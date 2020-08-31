@@ -14,6 +14,14 @@ describe('config-up/lib/lookUp', () => {
   it('should invoke doExists till it walks up to the root', () => {
     cwdSpy.mockReturnValue('/mock/drive');
     lookUp({ files: [ 'mock.config.js' ] });
+    expect(doExists).toHaveBeenCalledTimes(3);
+  });
+
+  it('should invoke doExists till it walks up to the root', () => {
+    doExists.mockReset();
+    doExists.mockReturnValueOnce(undefined).mockReturnValueOnce('/mock/mock.config.js');
+    cwdSpy.mockReturnValue('/mock/drive');
+    lookUp({ files: [ 'mock.config.js' ] });
     expect(doExists).toHaveBeenCalledTimes(2);
   });
 });

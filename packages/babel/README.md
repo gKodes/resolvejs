@@ -1,4 +1,4 @@
-# `babel`
+# @resolvejs/babel
 
 > TODO: description
 

@@ -16,7 +16,8 @@
   },
   "files": [
     "lib",
-    "bin"
+    "bin",
+    "known.yml"
   ],
   "publishConfig": {
     "access": "public"

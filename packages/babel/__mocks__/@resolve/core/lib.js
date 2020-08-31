@@ -1,1 +1,1 @@
-module.exports = jest.createMockFromModule('@resolve/core/lib');
+module.exports = jest.createMockFromModule('@resolvejs/core/lib');
