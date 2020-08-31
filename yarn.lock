@@ -1359,8 +1359,8 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@resolvejs/config-up@./packages/config-up/":
-  version "0.0.3-alpha.0"
+"@resolvejs/config-up@file:packages/config-up":
+  version "0.0.2-alpha.0"
   dependencies:
     cosmiconfig "^6.0.0"
     debug "^4.1.1"
@@ -1369,8 +1369,8 @@
     path-exists "^4.0.0"
     yaml "^1.10.0"
 
-"@resolvejs/core@./packages/core/":
-  version "0.0.3-alpha.0"
+"@resolvejs/core@./packages/core/", "@resolvejs/core@file:packages/core":
+  version "0.0.2-alpha.0"
   dependencies:
     cosmiconfig "^6.0.0"
     debug "^4.1.1"

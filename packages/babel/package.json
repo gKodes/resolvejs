@@ -29,7 +29,7 @@
     "test": "jest --verbose --coverage --color"
   },
   "dependencies": {
-    "@resolvejs/core": "./packages/core/",
+    "@resolvejs/core": "file:../core/",
     "cosmiconfig": "^6.0.0",
     "debug": "^4.1.1",
     "yargs": "^15.4.0"
@@ -39,12 +39,12 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
-    "@resolvejs/config-up": "./packages/config-up/",
+    "@resolvejs/config-up": "file:../config-up/",
     "jest": "^26.1.0"
   },
   "peerDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/register": "^7.10.4",
-    "@resolvejs/config-up": "./packages/config-up/"
+    "@resolvejs/config-up": "file:../config-up/"
   }
 }
