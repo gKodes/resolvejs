@@ -12,7 +12,7 @@ try {
 } catch (errNoConfig) { console.info('unable to find config-up module in the lookup tree', module.paths) }
 
 // Config up
-const babelrc = configForSync('babel');
+const babelrc = require( configForSync({ app: 'babel' }) );
 
 if (!babelrc) {
   console.info('Unable to find babel config');

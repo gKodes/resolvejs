@@ -39,7 +39,7 @@ const _resolveFilename = (() => {
       const resolvedPath = resolve(request, {
         target: isES6Package(parentModule.id) ? 'import' : 'require',
         // SELF_NODE_MODULES is the last path where things are search for
-        paths: [...parentModule.paths, SELF_NODE_MODULES],
+        paths: parentModule.paths,
       });
 
       if (resolvedPath) {
@@ -64,9 +64,4 @@ function resolveFilename(request, parentModule, isMain, options) {
   return _resolveFilename(request, parentModule, isMain, options);
 }
 
-// Patched the node response
-// eslint-disable-next-line no-underscore-dangle
-// TODO: Move this into /register.js
-Module._resolveFilename = resolveFilename;
-
-module.exports = { resolveFilename };
+module.exports = resolveFilename;
