@@ -8,7 +8,7 @@ try {
 
 const path = require('path');
 const DEAFULT_FLAGS = ['--delete-dir-on-start', '--no-comments'];
-process.argv.push('--config-file', configForSync('babel'));
+process.argv.push('--config-file', configForSync({ app: 'babel' }));
 
 if ( !process.argv.includes('--out-dir') ) {
   process.argv.push('--out-dir', 'dist');
