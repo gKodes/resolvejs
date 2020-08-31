@@ -13,7 +13,8 @@
   "files": [
     "lib",
     "utils",
-    "resolver.js"
+    "register.js",
+    "resolveFilename.js"
   ],
   "publishConfig": {
     "access": "public"
