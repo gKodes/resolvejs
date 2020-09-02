@@ -9,10 +9,12 @@ let configForSync;
 
 try {
   configForSync = require('@resolvejs/config-up/lib/configFor');
-} catch (errNoConfig) { console.info('unable to find config-up module in the lookup tree', module.paths) }
+} catch (errNoConfig) {
+  console.info('unable to find config-up module in the lookup tree', module.paths);
+}
 
 // Config up
-const babelrc = require( configForSync({ app: 'babel' }) );
+const babelrc = require(configForSync({ app: 'babel' }));
 
 if (!babelrc) {
   console.info('Unable to find babel config');
@@ -61,6 +63,7 @@ require('@babel/register')({
   sourceType: 'unambiguous',
   presets: babelrc.presets,
   plugins: babelrc.plugins,
+  env: babelrc.env,
   cache: false,
 });
 

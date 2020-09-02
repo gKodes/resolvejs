@@ -6,7 +6,9 @@ describe('babel/bin/node-babel', () => {
   beforeAll(() => {
     process.exit = jest.fn();
     exitSpy = jest.spyOn(process, 'exit');
-    exitSpy.mockImplementation(code => { throw new Error(code); });
+    exitSpy.mockImplementation((code) => {
+      throw new Error(code);
+    });
   });
 
   afterEach(() => {
