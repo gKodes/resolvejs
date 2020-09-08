@@ -1,0 +1,32 @@
+{
+  "name": "eslint-import-resolver-resolvejs",
+  "version": "0.0.8-alpha.0",
+  "description": "> TODO: description",
+  "author": "Kamalakar Gadireddy <kgadireddy@bills.com>",
+  "homepage": "https://github.com/gKodes/resolvejs#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gKodes/resolvejs.git"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "bugs": {
+    "url": "https://github.com/gKodes/resolvejs/issues"
+  },
+  "dependencies": {
+    "@resolvejs/core": "file:../core",
+    "builtin-modules": "^3.1.0",
+    "debug": "^4.1.1",
+    "find-node-modules": "^2.1.0"
+  }
+}
