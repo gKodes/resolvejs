@@ -9,6 +9,7 @@ const { execSync } = require('child_process');
 const assert = require('assert');
 const debug = require('debug')('config-up');
 const configFor = require('../lib/configFor');
+const { getKnownConfig } = require('../lib/knownConfigs');
 
 const argv = minimist(process.argv.slice(2), {
   alias: {
@@ -20,7 +21,7 @@ const argv = minimist(process.argv.slice(2), {
 let {
   _: [script, ...args],
   ['config-name']: configName,
-  ['config-ext']: configExt,
+  ['config-ext']: configExt = ['js', 'json'],
 } = argv;
 
 // Handle the NPM Script
@@ -29,14 +30,18 @@ if (npm_lifecycle_script) {
   [script, ...args] = npm_lifecycle_script.split(' ').splice(1);
 }
 
-const CONFIG_AT = configFor({ app: script });
+let lookUpFor = {};
+if (script) {
+  lookUpFor = getKnownConfig(script);
+} else {
+  lookUpFor = { config: configName, exts: configExt };
+}
+
+const CONFIG_AT = configFor(lookUpFor);
 if (!CONFIG_AT) {
   console.info(`Unable find config for ${script}`);
   process.exit(1);
 }
-
-// 131.6
-// 131 - 50
 
 const subProcessEnv = {
   CONFIG_AT,
@@ -44,6 +49,10 @@ const subProcessEnv = {
   config_up_found_at: path.dirname(CONFIG_AT),
   ...process.env,
 };
+
+if ( lookUpFor.arg && !args.includes(lookUpFor.arg) ) {
+  args = `${args} ${lookUpFor.arg} ${CONFIG_AT}`;
+}
 
 const command = `${script} ${args.join(' ')} `;
 

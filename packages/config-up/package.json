@@ -8,7 +8,7 @@
   "main": "lib/config-up.js",
   "types": "type.d.ts",
   "bin": {
-    "config-up": "bin/config-up"
+    "config-up": "bin/config-up.js"
   },
   "directories": {
     "lib": "lib",

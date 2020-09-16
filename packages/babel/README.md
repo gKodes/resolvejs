@@ -1,13 +1,17 @@
 # @resolvejs/babel
 
-> TODO: description
+Wrapper `CLI` for babel with support of `config-up` and `@resolve/core`
 
 ## Usage
 
+### CLI
+
+```bash
+# An wrapper on bable which support config-up to look-up the config
+babelc
 ```
-npm -g i babel
 
-babelc --help
-
-// TODO: DEMONSTRATE API
+```bash
+# An wrapper on bable with `@resolve/core` to resolve and load es modules
+node-babel
 ```

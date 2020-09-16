@@ -1,15 +1,15 @@
 babel:
-  configs:
+  files:
     - babel.config
   arg: --config-file
-  ext:
+  exts:
     - json
     - js
 
 jest:
-  configs:
+  files:
     - jest.config
   arg: --config
-  ext:
+  exts:
     - json
     - js

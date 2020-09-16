@@ -14,8 +14,7 @@ function configFor(options) {
     const knowConfig = knownConfigs[options.app];
     assert.ok(knowConfig, `Unknown opp ${options.app}`);
 
-    lookUpOptions.files = knowConfig.configs;
-    lookUpOptions.exts = knowConfig.ext;
+    lookUpOptions = knowConfig;
   }
 
   lookUpOptions.files = asArray(lookUpOptions.files);
