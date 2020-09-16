@@ -51,13 +51,17 @@ const subProcessEnv = {
 };
 
 if ( lookUpFor.arg && !args.includes(lookUpFor.arg) ) {
-  args = `${args} ${lookUpFor.arg} ${CONFIG_AT}`;
+  args.push(lookUpFor.arg, CONFIG_AT);
 }
 
 const command = `${script} ${args.join(' ')} `;
 
-execSync(command, {
-  cwd: process.cwd(),
-  env: subProcessEnv,
-  stdio: 'inherit',
-});
+try {
+  execSync(command, {
+    cwd: process.cwd(),
+    env: subProcessEnv,
+    stdio: 'inherit',
+  });
+} catch ( execError ) {
+  process.exit(execError.status);
+}
