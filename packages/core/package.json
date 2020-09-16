@@ -1,10 +1,17 @@
 {
   "name": "@resolvejs/core",
-  "version": "0.0.9-alpha.0",
+  "version": "0.0.10-alpha.0",
   "description": "Offers a wrapper for require.resolve function. Supporting configurable NodeJS sugar exports",
   "author": "Kamalakar Gadireddy <Kamalakar.Gadireddy@marriott.com>",
   "homepage": "https://github.com/gKodes/resolvejs#readme",
-  "keywords": [ "resolve", "require", "nodejs", "sugar", "exports", "import" ],
+  "keywords": [
+    "resolve",
+    "require",
+    "nodejs",
+    "sugar",
+    "exports",
+    "import"
+  ],
   "license": "MIT",
   "main": "resolver.js",
   "directories": {
