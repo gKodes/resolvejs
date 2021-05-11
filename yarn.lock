@@ -1360,7 +1360,7 @@
     "@types/node" ">= 8"
 
 "@resolvejs/config-up@file:packages/config-up":
-  version "0.0.9-alpha.0"
+  version "0.0.11-alpha.0"
   dependencies:
     cosmiconfig "^6.0.0"
     debug "^4.1.1"
@@ -1370,7 +1370,7 @@
     yaml "^1.10.0"
 
 "@resolvejs/core@./packages/core/", "@resolvejs/core@file:packages/core":
-  version "0.0.9-alpha.0"
+  version "0.0.11-alpha.0"
   dependencies:
     cosmiconfig "^6.0.0"
     debug "^4.1.1"
@@ -4676,9 +4676,9 @@ lodash.uniq@^4.5.0:
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
 lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.15, lodash@^4.2.1:
-  version "4.17.20"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
-  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 loud-rejection@^1.0.0:
   version "1.6.0"
